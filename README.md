@@ -168,8 +168,8 @@ This work may be distributed and/or modified under the conditions of the LaTeX P
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/enumsub/issues)
-- **Email:** your.email@example.com
+- **Issues:** [GitHub Issues](https://github.com/srikanth-mk/enumsub-tex/issues)
+- **Email:** srbsmohankumar@gmail.com
 
 ## Contributing
 
@@ -181,3 +181,4 @@ Contributions are welcome! Please:
 ## Acknowledgments
 
 This package was inspired by questions on TeX StackExchange about alignment issues between `enumitem` and `tasks` packages. Special thanks to the LaTeX community for identifying this common problem.
+[Stack Exchange Issue](https://tex.stackexchange.com/questions/749213/aligning-the-labels-from-enumerate-and-task)
