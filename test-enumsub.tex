@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[roman]{enumsub}
+
+% Test document to validate the package works correctly
+\begin{document}
+
+\title{enumsub Package Validation Test}
+\maketitle
+
+\section{Basic Functionality Test}
+
+\begin{enumerate}
+  \item Does basic enumsub work?
+  \begin{enumerate}
+    \item \enumsub{yes; no} % Should show (i) yes (ii) no
+  \end{enumerate}
+\end{enumerate}
+
+\section{Counter Reset Test}
+
+\begin{enumerate}
+  \item First item:
+  \begin{enumerate}
+    \item \enumsub{option 1; option 2} % Should start with (i)
+  \end{enumerate}
+  \item Second item:
+  \begin{enumerate}
+    \item \enumsub{option A; option B} % Should reset to (i) again
+  \end{enumerate}
+\end{enumerate}
+
+\section{Multiple Items Test}
+
+\begin{enumerate}
+  \item Question with three options:
+  \begin{enumerate}
+    \item \enumsub{first; second; third} % Tests 3+ items
+  \end{enumerate}
+\end{enumerate}
+
+\section{Alias Test}
+
+\begin{enumerate}
+  \item Using subparts alias:
+  \begin{enumerate}
+    \item \subparts{works; correctly}
+  \end{enumerate}
+  \item Using AutoSubpartsAligned alias:
+  \begin{enumerate}
+    \item \AutoSubpartsAligned{also; works}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Spacing Customization Test}
+
+\setenumsublabelwidth{3em}
+\setenumsubitemwidth{2cm}
+
+\begin{enumerate}
+  \item Custom spacing:
+  \begin{enumerate}
+    \item \enumsub{wider spacing; test}
+  \end{enumerate}
+\end{enumerate}
+
+% Reset to defaults
+\setenumsublabelwidth{2.2em}
+\setenumsubitemwidth{1.5cm}
+
+\section{Predefined Styles Test}
+
+\begin{enumerate}[mainq]
+  \item Using mainq style:
+  \begin{enumerate}[subq]
+    \item \enumsub{style test; working}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Mathematical Content Test}
+
+\begin{enumerate}
+  \item Math in sublists:
+  \begin{enumerate}
+    \item \enumsub{$x=1$; $x=2$; $x=3$}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Long Text Test}
+
+\begin{enumerate}
+  \item Longer option text:
+  \begin{enumerate}
+    \item \enumsub{This is a longer option text; This is another longer option}
+  \end{enumerate}
+\end{enumerate}
+
+\textbf{If this document compiles successfully and displays correctly, the enumsub package is working properly!}
+
+\end{document}

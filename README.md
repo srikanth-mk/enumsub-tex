@@ -1,11 +1,5 @@
 # enumsub - Aligned inline sublists for enumitem
 
-**Version:** 1.0  
-**Date:** 2025-08-04  
-**Author:** Srikanth Mohankumar  
-**License:** LPPL 1.3c  
-**CTAN:** https://ctan.org/pkg/enumsub  
-
 ## Overview
 
 The `enumsub` package provides seamless integration between `enumitem` and inline sublists with perfect alignment and automatic numbering. It solves the common alignment inconsistencies that occur when trying to combine `enumitem` and `tasks` packages.
@@ -38,11 +32,6 @@ The `enumsub` package provides seamless integration between `enumitem` and inlin
 ```
 
 ## Installation
-
-### From CTAN (Recommended)
-```bash
-tlmgr install enumsub
-```
 
 ### Manual Installation
 1. Download `enumsub.dtx` and `enumsub.ins`

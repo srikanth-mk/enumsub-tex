@@ -1,0 +1,275 @@
+% \iffalse meta-comment
+%
+% enumsub.dtx
+% Copyright (C) 2025 by Srikanth Mohankumar <srbsmohankumar@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Srikanth Mohankumar.
+%
+% This work consists of the files enumsub.dtx and enumsub.ins
+% and the derived file enumsub.sty.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{enumsub.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+%<package>\ProvidesPackage{enumsub}
+%<*package>
+    [2025/08/04 v1.0 Aligned inline sublists for enumitem]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{enumsub}
+\usepackage[numbered]{hypdoc}
+\usepackage{xspace}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{enumsub.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2025/08/04}{Initial version}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+% 
+%
+% \providecommand*{\url}{\texttt}
+% \GetFileInfo{enumsub.dtx}
+% \title{The \textsf{enumsub} package}
+% \author{Srikanth Mohankumar \\ \url{srbsmohankumar@gmail.com}}
+% \date{\fileversion~from \filedate}
+%
+% \maketitle
+%
+% \section{Introduction}
+%
+% The \textsf{enumsub} package provides seamless integration between 
+% \textsf{enumitem} and inline sublists with perfect alignment and 
+% automatic numbering. It solves the common alignment inconsistencies 
+% that occur when trying to combine \textsf{enumitem} and \textsf{tasks} 
+% packages.
+%
+% The package offers:
+% \begin{itemize}
+% \item Perfect alignment of inline sub-items with dynamic label styling
+% \item Multiple numbering schemes (Roman, alphabetic, Arabic)
+% \item Customizable spacing and dimensions
+% \item Easy-to-use semicolon-separated syntax
+% \item Non-breaking inline layout with consistent spacing
+% \end{itemize}
+%
+% \section{Usage}
+%
+% \subsection{Basic Usage}
+%
+% The main command is \cs{enumsub}, which takes semicolon-separated 
+% items and displays them inline with automatic numbering:
+%
+% \begin{verbatim}
+% \begin{enumerate}
+%   \item 
+%   \begin{enumerate}
+%     \item \enumsub{yes; no; maybe}
+%     \item \enumsub{option A; option B}
+%   \end{enumerate}
+% \end{enumerate}
+% \end{verbatim}
+%
+% \subsection{Package Options}
+%
+% The package supports three numbering styles:
+% \begin{itemize}
+% \item \texttt{roman} (default): Uses Roman numerals (i), (ii), (iii)
+% \item \texttt{alpha}: Uses alphabetic numbering (a), (b), (c)
+% \item \texttt{arabic}: Uses Arabic numerals (1), (2), (3)
+% \end{itemize}
+%
+% Load the package with: \verb|\usepackage[roman]{enumsub}|
+%
+% \subsection{Customization}
+%
+% You can adjust the spacing using:
+% \begin{itemize}
+% \item \cs{setenumsublabelwidth}\marg{width} -- Width of the label column
+% \item \cs{setenumsubitemwidth}\marg{width} -- Width of each item column
+% \end{itemize}
+%
+% \section{Examples}
+%
+% \begin{enumerate}[label=\textbf{\arabic*.}]
+%   \item This is a main question.
+%   \begin{enumerate}[label=\textbf{(\alph*)}]
+%     \item \enumsub{yes; no}
+%     \item \enumsub{definitely; maybe; never}
+%   \end{enumerate}
+% \end{enumerate}
+%
+% \section{Implementation}
+%
+% \StopEventually{}
+%
+% \section{Implementation}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% Load required packages:
+%    \begin{macrocode}
+\RequirePackage{enumitem}
+\RequirePackage{xparse}
+\RequirePackage{array}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+%
+% \begin{macro}{\if@enumsub@roman}
+% \begin{macro}{\if@enumsub@alpha}
+% \begin{macro}{\if@enumsub@arabic}
+% Package options for numbering styles:
+%    \begin{macrocode}
+\newif\if@enumsub@roman
+\newif\if@enumsub@alpha
+\newif\if@enumsub@arabic
+\@enumsub@romantrue
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% Declare and process options:
+%    \begin{macrocode}
+\DeclareOption{roman}{\@enumsub@romantrue\@enumsub@alphafalse\@enumsub@arabicfalse}
+\DeclareOption{alpha}{\@enumsub@alphatrue\@enumsub@romanfalse\@enumsub@arabicfalse}
+\DeclareOption{arabic}{\@enumsub@arabictrue\@enumsub@romanfalse\@enumsub@alphafalse}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% \begin{macro}{\enumsub@labelwidth}
+% \begin{macro}{\enumsub@itemwidth}
+% Customizable dimensions:
+%    \begin{macrocode}
+\newdimen\enumsub@labelwidth
+\newdimen\enumsub@itemwidth
+\enumsub@labelwidth=2.2em
+\enumsub@itemwidth=1.5cm
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\setenumsublabelwidth}
+% \begin{macro}{\setenumsubitemwidth}
+% User commands to adjust spacing:
+%    \begin{macrocode}
+\newcommand{\setenumsublabelwidth}[1]{\enumsub@labelwidth=#1}
+\newcommand{\setenumsubitemwidth}[1]{\enumsub@itemwidth=#1}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@enumsub@counter}
+% Subpart counter that resets at each \cs{item}:
+%    \begin{macrocode}
+\newcounter{enumsub@counter}
+\pretocmd{\item}{\setcounter{enumsub@counter}{0}}{}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\enumsub@getlabel}
+% Determine label format based on options:
+%    \begin{macrocode}
+\newcommand{\enumsub@getlabel}{%
+  \if@enumsub@roman%
+    \textbf{(\roman{enumsub@counter})}%
+  \else\if@enumsub@alpha%
+    \textbf{(\alph{enumsub@counter})}%
+  \else\if@enumsub@arabic%
+    \textbf{(\arabic{enumsub@counter})}%
+  \fi\fi\fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\enumsub}
+% Core macro for aligned subparts:
+%    \begin{macrocode}
+\NewDocumentCommand{\enumsub}{>{\SplitList{;}}m}{%
+  \begin{tabular}{@{}*{10}{ll}@{}}%
+    \ProcessList{#1}{\enumsub@renderitem}%
+  \end{tabular}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\enumsub@renderitem}
+% Render individual subpart:
+%    \begin{macrocode}
+\newcommand{\enumsub@renderitem}[1]{%
+  \stepcounter{enumsub@counter}%
+  \makebox[\enumsub@labelwidth][l]{\enumsub@getlabel} & 
+  \makebox[\enumsub@itemwidth][l]{#1}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Alternative command names for convenience:
+%    \begin{macrocode}
+\let\AutoSubpartsAligned\enumsub
+\let\subparts\enumsub
+\let\inlineparts\enumsub
+%    \end{macrocode}
+%
+% Predefined list styles:
+%    \begin{macrocode}
+\SetEnumitemKey{mainq}{label=\textbf{\arabic*.},% 
+                       leftmargin=2em,% 
+                       itemsep=0.2em,% 
+                       topsep=0.5em}
+\SetEnumitemKey{subq}{label=\textbf{(\alph*)},%
+                      leftmargin=2.8em,%
+                      itemsep=0.2em,%
+                      topsep=0.3em}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+% \Finale
+\endinput

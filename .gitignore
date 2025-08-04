@@ -1,0 +1,11 @@
+action-plan.md
+guide.md
+*.log
+*.aux
+*.glo
+*.gls
+*.hd
+*.idx
+*.ilg
+*.ind
+*.out

@@ -1,0 +1,71 @@
+# CTAN Submission Manifest for enumsub
+
+## Package Information
+- **Name:** enumsub
+- **Version:** 1.0
+- **Date:** 2025-08-04
+- **License:** LPPL 1.3c
+- **Maintainer:** Srikanth Mohankumar <srbsmohankumar@gmail.com>
+
+## Summary
+Aligned inline sublists for enumitem - solves alignment inconsistencies between enumitem and tasks packages.
+
+## Description
+The enumsub package provides seamless integration between enumitem and inline sublists with perfect alignment and automatic numbering. It addresses the common problem of alignment inconsistencies when trying to combine enumitem and tasks packages by offering a tabular-based solution with automatic counter management.
+
+## Files Included
+
+### Source Files
+- `enumsub.dtx` - Documented LaTeX source file
+- `enumsub.ins` - Installation script
+
+### Derived Files
+- `enumsub.sty` - Package file (generated from enumsub.dtx)
+- `enumsub.pdf` - Package documentation (generated from enumsub.dtx)
+
+### Documentation and Examples
+- `README.md` - Package overview and quick start guide
+- `enumsub-example.tex` - Complete example document
+- `enumsub-example.pdf` - Compiled example output
+- `MANIFEST.txt` - This file
+
+### Installation Instructions
+1. Run `latex enumsub.ins` to generate `enumsub.sty`
+2. Place `enumsub.sty` in your TeX tree
+3. Run `texhash` if using TeX Live
+4. Compile `enumsub.dtx` with `pdflatex` to generate documentation
+
+## Keywords
+enumitem, lists, alignment, inline, sublists, enumeration, tasks, tabular, automatic numbering
+
+## CTAN Directory Structure
+```
+enumsub/
+├── enumsub.dtx
+├── enumsub.ins
+├── README.md
+├── enumsub-example.tex
+└── MANIFEST.txt
+```
+
+## Dependencies
+- LaTeX2e (2020/10/01 or later)
+- enumitem
+- xparse
+- array
+- etoolbox
+
+## Compatibility
+- All standard document classes
+- Compatible with babel, polyglossia, hyperref, beamer
+- Tested with TeX Live 2023 and MiKTeX
+
+## Change Log
+### Version 1.0 (2025-08-04)
+- Initial release
+- Core \enumsub functionality
+- Package options for numbering styles (roman, alpha, arabic)
+- Customizable spacing commands
+- Multiple command aliases
+- Automatic counter reset
+- Comprehensive documentation and examples

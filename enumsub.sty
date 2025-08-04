@@ -1,0 +1,79 @@
+%%
+%% This is file `enumsub.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% enumsub.dtx  (with options: `package')
+%% 
+%% This is a generated file.
+%% 
+%% enumsub -- Aligned inline sublists for enumitem
+%% 
+%% Copyright (C) 2025 by Srikanth Mohankumar <srbsmohankumar@gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2008 or later.
+%% 
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Srikanth Mohankumar.
+%% 
+%% This work consists of the files enumsub.dtx and enumsub.ins
+%% and the derived file enumsub.sty.
+%% 
+\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+\ProvidesPackage{enumsub}
+    [2025/08/04 v1.0 Aligned inline sublists for enumitem]
+\RequirePackage{enumitem}
+\RequirePackage{xparse}
+\RequirePackage{array}
+\RequirePackage{etoolbox}
+\newif\if@enumsub@roman
+\newif\if@enumsub@alpha
+\newif\if@enumsub@arabic
+\@enumsub@romantrue
+\DeclareOption{roman}{\@enumsub@romantrue\@enumsub@alphafalse\@enumsub@arabicfalse}
+\DeclareOption{alpha}{\@enumsub@alphatrue\@enumsub@romanfalse\@enumsub@arabicfalse}
+\DeclareOption{arabic}{\@enumsub@arabictrue\@enumsub@romanfalse\@enumsub@alphafalse}
+\ProcessOptions\relax
+\newdimen\enumsub@labelwidth
+\newdimen\enumsub@itemwidth
+\enumsub@labelwidth=2.2em
+\enumsub@itemwidth=1.5cm
+\newcommand{\setenumsublabelwidth}[1]{\enumsub@labelwidth=#1}
+\newcommand{\setenumsubitemwidth}[1]{\enumsub@itemwidth=#1}
+\newcounter{enumsub@counter}
+\pretocmd{\item}{\setcounter{enumsub@counter}{0}}{}{}
+\newcommand{\enumsub@getlabel}{%
+  \if@enumsub@roman%
+    \textbf{(\roman{enumsub@counter})}%
+  \else\if@enumsub@alpha%
+    \textbf{(\alph{enumsub@counter})}%
+  \else\if@enumsub@arabic%
+    \textbf{(\arabic{enumsub@counter})}%
+  \fi\fi\fi%
+}
+\NewDocumentCommand{\enumsub}{>{\SplitList{;}}m}{%
+  \begin{tabular}{@{}*{10}{ll}@{}}%
+    \ProcessList{#1}{\enumsub@renderitem}%
+  \end{tabular}%
+}
+\newcommand{\enumsub@renderitem}[1]{%
+  \stepcounter{enumsub@counter}%
+  \makebox[\enumsub@labelwidth][l]{\enumsub@getlabel} &
+  \makebox[\enumsub@itemwidth][l]{#1}%
+}
+\let\AutoSubpartsAligned\enumsub
+\let\subparts\enumsub
+\let\inlineparts\enumsub
+\SetEnumitemKey{mainq}{label=\textbf{\arabic*.}, leftmargin=2em, itemsep=0.2em, topsep=0.5em}
+\SetEnumitemKey{subq}{label=\textbf{(\alph*)}, leftmargin=2.8em, itemsep=0.2em, topsep=0.3em}
+\endinput
+%%
+%% End of file `enumsub.sty'.

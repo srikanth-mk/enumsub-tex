@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[roman]{enumsub}  % Try also: [alpha] or [arabic]
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+% Title and metadata
+\title{The \texttt{enumsub} Package\\Examples and Demonstrations}
+\author{Srikanth Mohankumar}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This document demonstrates the capabilities of the \texttt{enumsub} package, 
+which provides aligned inline sublists that integrate seamlessly with 
+\texttt{enumitem}.
+
+\section{Basic Examples}
+
+\subsection{Simple Multiple Choice Questions}
+
+Here's a typical multiple choice setup:
+
+\begin{enumerate}[mainq]
+  \item What is the capital of France?
+  \begin{enumerate}[subq]
+    \item \enumsub{London; Paris; Berlin; Madrid}
+  \end{enumerate}
+  
+  \item Which of these are programming languages?
+  \begin{enumerate}[subq]
+    \item \enumsub{Python; JavaScript}
+    \item \enumsub{HTML; CSS}
+    \item \enumsub{C++; Java; Ruby}
+  \end{enumerate}
+  
+  \item True or false questions:
+  \begin{enumerate}[subq]
+    \item The Earth is flat. \enumsub{True; False}
+    \item LaTeX is awesome. \enumsub{True; False}
+    \item 2 + 2 = 5. \enumsub{True; False}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Different Numbering Styles}
+
+\subsection{Current Style (Roman)}
+With the \texttt{roman} option, sublists use Roman numerals:
+
+\setenumsublabelwidth{3em}
+\setenumsubitemwidth{3cm}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Choose the correct answer:
+  \begin{enumerate}[label=\textbf{(\alph*)}]
+    \item \enumsub{Option A; Option B{\quad}; Option C}
+  \end{enumerate}
+\end{enumerate}
+
+% Note: To see different styles, compile with [alpha] or [arabic] options
+
+\section{Customization Examples}
+
+\subsection{Custom Spacing}
+
+Let's adjust the spacing for longer options:
+
+\setenumsublabelwidth{2em}
+\setenumsubitemwidth{6cm}
+
+\begin{enumerate}[mainq]
+  \item Which programming paradigm do you prefer?
+  \begin{enumerate}[subq]
+    \item \enumsub{Object-Oriented Programming; Functional Programming}
+    \item \enumsub{Procedural Programming; Logic Programming}
+  \end{enumerate}
+\end{enumerate}
+
+% Reset to default spacing
+\setenumsublabelwidth{2.2em}
+\setenumsubitemwidth{1.5cm}
+
+\section{Alternative Command Names}
+
+The package provides several aliases for convenience:
+
+\begin{enumerate}[mainq]
+  \item Using \texttt{\textbackslash subparts}:
+  \begin{enumerate}[subq]
+    \item \subparts{yes; no; maybe}
+  \end{enumerate}
+  
+  \item Using \texttt{\textbackslash AutoSubpartsAligned}:
+  \begin{enumerate}[subq]
+    \item \AutoSubpartsAligned{agree; disagree; neutral}
+  \end{enumerate}
+  
+  % Modified spacing
+  \setenumsubitemwidth{2cm}
+  \item Using \texttt{\textbackslash inlineparts}:
+  \begin{enumerate}[subq]
+    \item \inlineparts{always; sometimes; never}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Complex Questionnaire Example}
+
+Here's a more realistic questionnaire:
+
+% Reset to default spacing
+\setenumsublabelwidth{2.2em}
+\setenumsubitemwidth{1.5cm}
+
+\begin{enumerate}[mainq]
+  \item How often do you use LaTeX?
+  \begin{enumerate}[subq]
+    \item \enumsub{Daily; Weekly; Monthly; Rarely; Never}
+  \end{enumerate}
+
+  % Modified spacing
+\setenumsublabelwidth{2.2em}
+\setenumsubitemwidth{3cm}
+  
+  \item What type of documents do you create with LaTeX? (Select all that apply)
+  \begin{enumerate}[subq]
+    \item \enumsub{Academic papers; Books}
+    \item \enumsub{Presentations; Letters}
+    \item \enumsub{Reports; Theses}
+  \end{enumerate}
+  
+  \item Rate your LaTeX expertise:
+  \begin{enumerate}[subq]
+    \item \enumsub{Beginner; Intermediate; Advanced; Expert}
+  \end{enumerate}
+  
+  \item Which LaTeX editor do you prefer?
+  \begin{enumerate}[subq]
+    \item \enumsub{TeXstudio; Overleaf; TeXworks}
+    \item \enumsub{Vim/Emacs; VS Code; Other}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Mathematical Content}
+
+The package works well with mathematical expressions:
+
+\begin{enumerate}[mainq]
+  \item What is $\int_0^1 x^2 \, dx$?
+  \begin{enumerate}[subq]
+    \item \enumsub{$\frac{1}{3}$; $\frac{1}{2}$; $1$; $\frac{2}{3}$}
+  \end{enumerate}
+  
+  \item Which of these are prime numbers?
+  \begin{enumerate}[subq]
+    \item \enumsub{$2$; $3$; $4$}
+    \item \enumsub{$5$; $6$; $7$}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Comparison with Standard Methods}
+
+\subsection{Without enumsub (misaligned)}
+
+This is how it looks without proper alignment:
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Question without enumsub:
+  \begin{enumerate}[label=\textbf{(\alph*)}]
+    \item (i) Option 1 \quad (ii) Option 2 \quad (iii) Option 3
+    % ↑ This creates spacing issues and alignment problems
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{With enumsub (perfectly aligned)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Same question with enumsub:
+  \begin{enumerate}[label=\textbf{(\alph*)}]
+    \item \enumsub{Option 1; Option 2; Option 3}
+    % ↑ Perfect alignment maintained
+  \end{enumerate}
+\end{enumerate}
+
+\section{Tips and Best Practices}
+
+\begin{itemize}
+  \item Keep option text concise for best alignment
+  \item Use consistent spacing throughout your document
+  \item The semicolon separator makes editing easy
+  \item Counters automatically reset at each \texttt{\textbackslash item}
+  \item Works well with \texttt{hyperref} for clickable links
+\end{itemize}
+
+\section{Package Information}
+
+\begin{itemize}
+  \item \textbf{Package:} enumsub v1.0
+  \item \textbf{Author:} Srikanth Mohankumar
+  \item \textbf{License:} LPPL 1.3c
+  \item \textbf{Dependencies:} enumitem, xparse, array, etoolbox
+\end{itemize}
+
+\end{document}
