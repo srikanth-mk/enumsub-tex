@@ -100,14 +100,6 @@ pdflatex enumsub.dtx
 \enumsub{longer option 1; longer option 2}
 ```
 
-## Comparison with Other Packages
-
-| Package | Inline Layout | enumitem Integration | Auto Alignment | Custom Numbering |
-|---------|---------------|---------------------|----------------|------------------|
-| `enumsub` | ✅ | ✅ | ✅ | ✅ |
-| `tasks` | ✅ | ❌ | ❌ | ✅ |
-| `tablists` | ❌ | ❌ | ✅ | ❌ |
-| `multenum` | ❌ | ❌ | ✅ | ❌ |
 
 ## Problem Solved
 
@@ -159,6 +151,7 @@ This work may be distributed and/or modified under the conditions of the LaTeX P
 
 - **Issues:** [GitHub Issues](https://github.com/srikanth-mk/enumsub-tex/issues)
 - **Email:** srbsmohankumar@gmail.com
+- **CTAN:** [link](https://ctan.org/pkg/enumsub)
 
 ## Contributing
 
